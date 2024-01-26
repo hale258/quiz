@@ -11,6 +11,7 @@ const questions = [
     },
     {
         question: "Who's That Pokemon?",
+        imagePath:"image/raikou.png",
         answers: [
             {text: "Pikachu", correct: false},
             {text: "Zapdos", correct: false},
@@ -64,6 +65,7 @@ function showQuestion(){
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+    imageElement.src = currentQuestion.imagePath;
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");  
         button.innerHTML = answer.text;
@@ -73,12 +75,7 @@ function showQuestion(){
             button.dataset.correct = answer.correct;
         }
         button.addEventListener("click", selectAnswer);
-    });
-      imageElement.src = currentQuestion.imagePath;
-      imageElement.width = 300; 
-      imageElement.height = 200; 
-      container.appendChild(imageElement);
-
+    })
     }
 function resetState(){
     nextButton.style.display = "none";
@@ -123,7 +120,7 @@ nextButton.addEventListener("click", ()=>{
     if(currentQuestionIndex < questions.length){
         handleNextButton();
     }else{
-        startQuiz
+        startQuiz();
     }
 });
 startQuiz();
